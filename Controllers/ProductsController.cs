@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductsAPI.Models;
 
 namespace ProductsAPI.Controllers
@@ -8,18 +10,12 @@ namespace ProductsAPI.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private static List<Product>? _products; 
-        public ProductsController()
+        private  readonly ProductsContext _context;
+        public ProductsController(ProductsContext context)
         {
-            _products =
-            [
-                new Product{ProductId=1,ProductName="Iphone14",Price=5000,IsActive=true},
-                new Product{ProductId=2,ProductName="Iphone15",Price=6000,IsActive=true},
-                new Product{ProductId=3,ProductName="Iphone16",Price=7000,IsActive=true},
-                new Product{ProductId=4,ProductName="Iphone17",Price=8000,IsActive=true},
-            ];//refrrans tip olduğu için new ile bellekte yer açıyoruz
+            _context = context;
         }
-
+    
 
 
       /*  public IActionResult GetProducts()
@@ -28,27 +24,25 @@ namespace ProductsAPI.Controllers
 }*/
 
         [HttpGet]
-        public IActionResult GetProducts() 
+        public async Task <IActionResult> GetProducts() 
         {
-            if(_products==null)
-            {
-                return NotFound();
-            }
+           var products= await _context.Products.ToListAsync();
+            return Ok(products);
           
-            return Ok(_products);
+            
         }
 
              //localhost:5001/api/products/1
              //[HttpGet("api/[controller]{id}")] böylede yazılabilir 
            [HttpGet("{id}")]
-        public IActionResult GetProducts(int? id)
+        public async Task<IActionResult> GetProducts(int? id)
         {
             if(id==null)
             {
                 // return StatusCode(404,"aradağınız kaynak bulunamadı");//daha kolay yolu var
                 return NotFound();//404
             }
-            var p= _products?.FirstOrDefault(x=>x.ProductId==id);
+            var p= await _context.Products.FirstOrDefaultAsync(x=>x.ProductId==id);
             if(p==null)
             {
                 return NotFound();
