@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProductsAPI.DTO;
 using ProductsAPI.Models;
 
 namespace ProductsAPI.Controllers
@@ -26,7 +27,12 @@ namespace ProductsAPI.Controllers
         [HttpGet]
         public async Task <IActionResult> GetProducts() 
         {
-           var products= await _context.Products.ToListAsync();
+           var products= await _context.Products.Where(i=>i.IsActive).Select(p=> 
+                         new ProductDTO{
+                         ProductId=p.ProductId,
+                         ProductName=p.ProductName,
+                         Price=p.Price
+           }).ToListAsync();
             return Ok(products);
           
             
@@ -42,7 +48,13 @@ namespace ProductsAPI.Controllers
                 // return StatusCode(404,"aradağınız kaynak bulunamadı");//daha kolay yolu var
                 return NotFound();//404
             }
-            var p= await _context.Products.FirstOrDefaultAsync(x=>x.ProductId==id);
+           var p = await _context
+    .Products
+    .Where(x => x.ProductId == id) // id'ye göre filtreleme
+    .Select(p => ProductToDTO(p))  // DTO'ya dönüştürme
+    .FirstOrDefaultAsync();
+
+            
             if(p==null)
             {
                 return NotFound();
@@ -68,6 +80,7 @@ namespace ProductsAPI.Controllers
                 return BadRequest(); //400 
             }
             var product= await _context.Products.FirstOrDefaultAsync(x=>x.ProductId==id);
+            
             if(product==null)
             {
                 return NotFound();//404 
@@ -115,5 +128,14 @@ namespace ProductsAPI.Controllers
         return Ok(new{message="Ürün başarıyla silindi",deletedProductId=product});
     }
     
- }
- }
+//FONKSİYONLAR
+        private static ProductDTO ProductToDTO(Product p)
+        {
+            return new ProductDTO
+            {
+                ProductId=p.ProductId,
+                ProductName=p.ProductName,
+                Price=p.Price
+            };
+        }
+    }}
