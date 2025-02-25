@@ -59,5 +59,17 @@
         <member name="M:ProductsAPI.Migrations.HasDataProdcts2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:ProductsAPI.Migrations.IdentityTables">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

@@ -141,3 +141,4 @@ C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\Sy
 C:\Users\Serhatt\Desktop\ProductsAPI\obj\Debug\net8.0\ProductsAPI.sourcelink.json
 C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\ProductsAPI.xml
 C:\Users\Serhatt\Desktop\ProductsAPI\obj\Debug\net8.0\ProductsAPI.xml
+C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
