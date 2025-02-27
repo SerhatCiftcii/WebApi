@@ -1,6 +1,10 @@
 using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using ProductsAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,14 +34,59 @@ builder.Services.Configure<IdentityOptions>(options =>{
     options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(5);
    // 5kere yanlış giriş sonrası kullanıucıyı kilitleme
     options.Lockout.MaxFailedAccessAttempts=5;
-
-
-
 });
 
+builder.Services.AddAuthentication(x=>{
+    x.DefaultAuthenticateScheme=JwtBearerDefaults.AuthenticationScheme;
+     x.DefaultChallengeScheme=JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x=>{
+    x.RequireHttpsMetadata=false;
+    x.TokenValidationParameters=new TokenValidationParameters
+    {
+       ValidateIssuer= false,
+       ValidIssuer="serhat.com", //firma
+       ValidateAudience= false, //bu apiyi hangi firmalar ve servisler için geliştrtidn bilgisi
+        ValidAudience="",
+        ValidAudiences=new string[]{"a","b"}, //kimler için geliştirilmiş //false olanlar bilgilendirme truye çekmedim
+
+         // benım kullandığım key bilgisi valudate edicez 
+        ValidateIssuerSigningKey=true,
+        IssuerSigningKey =new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Secret").Value ?? "")),
+
+        //süre için bilgi vermiştik ancak true verilemzse süre önemsemeden validate eder
+        ValidateLifetime=true
+    };
+    });
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -69,6 +118,7 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+app.UseAuthentication();
 app.UseAuthorization(); // Eğer authentication gereksinimi varsa.
 
 app.MapControllers(); // Bu satır çok önemli! Controller'ları tanımlamak için.

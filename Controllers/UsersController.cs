@@ -86,17 +86,17 @@ namespace ProductsAPI.Controllers
 
            var tokenDescripter=new SecurityTokenDescriptor
            {
-               Subject=new ClaimsIdentity(
-                new Claim[]
+               Subject=new ClaimsIdentity(new Claim[]
                  {
                 //token içerisinde saklanacak bilgiler
                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                    new Claim(ClaimTypes.Name,user.UserName ?? "")
-               }
+                }
                ),
                Expires=DateTime.UtcNow.AddDays(1),
                //şifreleme algoritması
-               SigningCredentials=new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha512Signature)
+               SigningCredentials=new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha512Signature),
+               Issuer="serhat.com"
            };
            var token=tokenHandler.CreateToken(tokenDescripter);
            return tokenHandler.WriteToken(token);

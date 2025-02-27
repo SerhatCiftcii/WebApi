@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsAPI.DTO;
@@ -27,7 +28,7 @@ namespace ProductsAPI.Controllers
         [HttpGet]
         public async Task <IActionResult> GetProducts() 
         {
-           var products= await _context.Products.Where(i=>i.IsActive).Select(p=> 
+           var products= await _context.Products.Select(p=> 
                          new ProductDTO{
                          ProductId=p.ProductId,
                          ProductName=p.ProductName,
@@ -41,6 +42,7 @@ namespace ProductsAPI.Controllers
              //localhost:5001/api/products/1
              //[HttpGet("api/[controller]{id}")] böylede yazılabilir 
            [HttpGet("{id}")]
+           [Authorize]
         public async Task<IActionResult> GetProducts(int? id)
         {
             if(id==null)
@@ -57,7 +59,7 @@ namespace ProductsAPI.Controllers
             
             if(p==null)
             {
-                return NotFound();
+                return NotFound(new{message="bu id de kayıt bulunamadı"});//404
             }
             return Ok(p);
         }
@@ -131,11 +133,13 @@ namespace ProductsAPI.Controllers
 //FONKSİYONLAR
         private static ProductDTO ProductToDTO(Product p)
         {
-            return new ProductDTO
-            {
-                ProductId=p.ProductId,
-                ProductName=p.ProductName,
-                Price=p.Price
-            };
+            var entity= new ProductDTO();
+            if(p !=null){
+                entity.ProductId=p.ProductId;
+                 entity.ProductName=p.ProductName;
+                  entity.Price=p.Price;
+
+            }
+            return entity;
         }
     }}
