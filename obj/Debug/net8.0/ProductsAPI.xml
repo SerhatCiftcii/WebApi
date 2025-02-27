@@ -11,6 +11,20 @@
             <param name="id">Silinecek Ürün Idsi</param>
             <returns></returns>
         </member>
+        <member name="M:ProductsAPI.Controllers.UsersController.CreateUser(ProductsAPI.DTO.UserDto)">
+            <summary>
+            Kullanıcı kayıt işlemi
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsAPI.Controllers.UsersController.Login(ProductsAPI.DTO.LoginDTO)">
+            <summary>
+            Kullanıcı giriş (LOGİN) işlemi
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:ProductsAPI.Migrations.InıtalCrate">
             <inheritdoc />
         </member>

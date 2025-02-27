@@ -142,3 +142,5 @@ C:\Users\Serhatt\Desktop\ProductsAPI\obj\Debug\net8.0\ProductsAPI.sourcelink.jso
 C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\ProductsAPI.xml
 C:\Users\Serhatt\Desktop\ProductsAPI\obj\Debug\net8.0\ProductsAPI.xml
 C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Serhatt\Desktop\ProductsAPI\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
