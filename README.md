@@ -12,5 +12,5 @@
 -Token Based Authenticatıon
 -Jwt
 -Cors(Servis Desteği)
--Serialize ve Desarilize veri alma) +alternatif olarak AspNet projesi  oluştururak servis üzerinden gelen dataları nasıl alırız Baklıcak.
+-Serialize ve Desarilize veri alma) +alternatif olarak AspNet projesi  oluştururak servis üzerinden gelen datalar alınıcak.
 
