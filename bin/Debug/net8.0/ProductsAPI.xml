@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductsAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ProductsAPI.Controllers.ProductsController.DeleteProduct(System.Nullable{System.Int32})">
+            <summary>
+            Ürün Silme İşlemi
+            </summary>
+            <param name="id">Silinecek Ürün Idsi</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsAPI.Controllers.UsersController.CreateUser(ProductsAPI.DTO.UserDto)">
+            <summary>
+            Kullanıcı kayıt işlemi
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsAPI.Controllers.UsersController.Login(ProductsAPI.DTO.LoginDTO)">
+            <summary>
+            Kullanıcı giriş (LOGİN) işlemi
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProductsAPI.Migrations.InıtalCrate">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.InıtalCrate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.InıtalCrate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.InıtalCrate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ProductsAPI.Migrations.UpdatePriceColumn">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.UpdatePriceColumn.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.UpdatePriceColumn.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.UpdatePriceColumn.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ProductsAPI.Migrations.HasDataProdcts">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ProductsAPI.Migrations.HasDataProdcts2">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.HasDataProdcts2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ProductsAPI.Migrations.IdentityTables">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProductsAPI.Migrations.IdentityTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
