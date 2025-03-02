@@ -8,6 +8,18 @@ using Microsoft.OpenApi.Models;
 using ProductsAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options=>{
+options.AddPolicy(name: MyAllowSpecificOrigins,
+    policy=>{
+               policy.WithOrigins("http://127.0.0.1:5500", "https://127.0.0.1:5500") // Frontend adresi
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+             
+});
+});
+
 // Swagger için XML dokümantasyonu ekleyelim
 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -118,7 +130,10 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+app.UseStaticFiles();
 app.UseAuthentication();
+app.UseRouting();
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization(); // Eğer authentication gereksinimi varsa.
 
 app.MapControllers(); // Bu satır çok önemli! Controller'ları tanımlamak için.

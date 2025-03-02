@@ -35,8 +35,6 @@ namespace ProductsAPI.Controllers
                          Price=p.Price
            }).ToListAsync();
             return Ok(products);
-          
-            
         }
 
              //localhost:5001/api/products/1
